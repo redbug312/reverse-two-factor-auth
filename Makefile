@@ -1,4 +1,4 @@
 .PHONY: start
 
 start:
-	make start -C app/server/
+	make start -C server

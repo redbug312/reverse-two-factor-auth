@@ -2,4 +2,4 @@
 
 start:
 	. env/bin/activate
-	python3 api.py
+	env FLASK_APP=run.py flask run
