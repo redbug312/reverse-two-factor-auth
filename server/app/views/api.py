@@ -1,24 +1,9 @@
 from flask import Blueprint, abort, request, jsonify, g, url_for, render_template
-from flask_httpauth import HTTPBasicAuth
 
-from ..models import User, db
+from ..models import User, db, auth
 
 
-auth = HTTPBasicAuth()
 users = Blueprint('users', __name__, template_folder='templates')
-
-
-@auth.verify_password
-def verify_password(username_or_token, password):
-    # first try to authenticate by token
-    user = User.verify_auth_token(username_or_token)
-    if not user:
-        # try to authenticate with username/password
-        user = User.query.filter_by(username=username_or_token).first()
-        if not user or not user.verify_password(password):
-            return False
-    g.user = user
-    return True
 
 
 @users.route('/api/users', methods=['POST'])
