@@ -11,7 +11,7 @@ def index():
     return render_template('signup.html')
 
 
-@signup.route('/signup/result', methods=['POST'])
+@signup.route('/signup/redirect', methods=['POST'])
 def result():
     # TODO merge into api.new_user
     username = request.form.get('username')
