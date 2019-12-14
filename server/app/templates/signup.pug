@@ -1,19 +1,21 @@
 extends base
 
 block content
-    h2.ui.teal.image.header
-        img.image(src='static/img/logo.png')
-        .content
-            | Create new account
-    form.ui.large.form(method='POST', action=url_for('signup.result'))
-        .ui.stacked.segment
-            .field
-                .ui.left.icon.input
-                    i.user.icon
-                    input(name='username', placeholder='Username', value='username', type='text')
-            .field
-                .ui.left.icon.input
-                    i.lock.icon
-                    input(name='password', placeholder='Password', value='password', type='password')
-            .ui.fluid.large.teal.submit.button Sign Up
-        .ui.error.message
+  h2.ui.teal.image.header
+    img.image(src='static/img/logo.png')
+    .content
+      | Create new account
+  form.ui.large.form(method='POST', action=url_for('signup.result'))
+    .ui.stacked.segment
+      .field
+        .ui.left.icon.input
+          i.user.icon
+          input(name='username', placeholder='Username', value='username', type='text')
+      .field
+        .ui.left.icon.input
+          i.lock.icon
+          input(name='password', placeholder='Password', value='password', type='password')
+      .ui.fluid.large.teal.submit.button Sign Up
+    .ui.error.message
+
+// vim: set ts=2 sw=2 et:
