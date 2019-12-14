@@ -1,11 +1,15 @@
 extends base
 
+block head
+  script(src=url_for('static', filename='js/validate.js'))
+
 block content
-  h2.ui.teal.image.header
-    img.image(src='static/img/logo.png')
+  h1.ui.blue.icon.header
+    i.grey.circular.paragraph.icon
     .content
       | Create new account
   form.ui.large.form(method='POST', action=url_for('signup.result'))
+    .ui.error.message
     .ui.stacked.segment
       .field
         .ui.left.icon.input
@@ -15,7 +19,10 @@ block content
         .ui.left.icon.input
           i.lock.icon
           input(name='password', placeholder='Password', value='password', type='password')
-      .ui.fluid.large.teal.submit.button Sign Up
-    .ui.error.message
+      .ui.fluid.large.primary.submit.button Sign Up
+  .ui.message
+    | Already has account?&nbsp;
+    a(href=url_for('signin.index')) Login
+    | .
 
 // vim: set ts=2 sw=2 et:
