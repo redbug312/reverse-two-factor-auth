@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for
+from werkzeug.exceptions import HTTPException
 
 from .models import User, db
 from .views.api import users
@@ -26,6 +27,12 @@ def logout():
     res = make_response(redirect(url_for('index'), code=302))
     res.set_cookie('token', '')
     return res
+
+
+@app.errorhandler(HTTPException)
+def handle_exception(error):
+    title = 'Error %s'.format(error.code)
+    return render_template('error.pug', title=title, error=error), error.code
 
 
 # https://stackoverflow.com/a/19438054
