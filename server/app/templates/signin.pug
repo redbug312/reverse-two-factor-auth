@@ -1,0 +1,22 @@
+extends base
+
+block content
+    h2.ui.teal.image.header
+        img.image(src='static/img/logo.png')
+        .content
+            | Log-in to your account
+    form.ui.large.form(method='POST', action=url_for('signin.result'))
+        .ui.stacked.segment
+            .field
+                .ui.left.icon.input
+                    i.user.icon
+                    input(name='username', placeholder='Username', value='username', type='text')
+            .field
+                .ui.left.icon.input
+                    i.lock.icon
+                    input(name='password', placeholder='Password', value='password', type='password')
+            .ui.fluid.large.teal.submit.button Login
+        .ui.error.message
+    .ui.message
+        | New to us?&nbsp;
+        a(href=url_for('signup.index')) Sign Up

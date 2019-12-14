@@ -6,6 +6,7 @@ from .views.signin import signin
 from .views.signup import signup
 
 app = Flask(__name__, template_folder='templates')
+app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 app.register_blueprint(users)
 app.register_blueprint(signin)
 app.register_blueprint(signup)

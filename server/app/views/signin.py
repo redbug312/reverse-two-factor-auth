@@ -8,7 +8,7 @@ signin = Blueprint('signin', __name__)
 
 @signin.route('/signin')
 def index():
-    return render_template('signin.html')
+    return render_template('signin.pug', title='Login')
 
 
 @signin.route('/signin/redirect', methods=['POST'])
