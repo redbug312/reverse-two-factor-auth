@@ -9,17 +9,17 @@ block content
       i.grey.circular.paragraph.icon
       .content
         | Login your account
-    form.ui.large.form(method='POST', action=url_for('signin.result'))
+    form.ui.large.form(method='POST' action=url_for('signin.result'))
       .ui.error.message
       .ui.stacked.segment
         .field
           .ui.left.icon.input
             i.user.icon
-            input(name='username', placeholder='Username', value='username', type='text')
+            input(name='username' placeholder='Username' value='username' type='text')
         .field
           .ui.left.icon.input
             i.lock.icon
-            input(name='password', placeholder='Password', value='password', type='password')
+            input(name='password' placeholder='Password' value='password' type='password')
         .ui.fluid.large.primary.submit.button Login
     .ui.message
       | New to us?&nbsp;

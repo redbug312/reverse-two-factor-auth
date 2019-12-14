@@ -9,17 +9,17 @@ block content
       i.grey.circular.paragraph.icon
       .content
         | Create new account
-    form.ui.large.form(method='POST', action=url_for('signup.result'))
+    form.ui.large.form(method='POST' action=url_for('signup.result'))
       .ui.error.message
       .ui.stacked.segment
         .field
           .ui.left.icon.input
             i.user.icon
-            input(name='username', placeholder='Username', value='username', type='text')
+            input(name='username' placeholder='Username' value='username' type='text')
         .field
           .ui.left.icon.input
             i.lock.icon
-            input(name='password', placeholder='Password', value='password', type='password')
+            input(name='password' placeholder='Password' value='password' type='password')
         .ui.fluid.large.primary.submit.button Sign Up
     .ui.message
       | Already has account?&nbsp;
