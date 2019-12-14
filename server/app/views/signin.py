@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, request, render_template, redirect, url_for, make_response, g
+from flask import Blueprint, request, render_template, redirect, url_for, make_response, g, flash
 
 from ..models import auth
 
@@ -16,9 +16,11 @@ def result():
     username = request.form.get('username')
     password = request.form.get('password')
     if username is None or password is None:
-        abort(400)    # missing arguments
+        flash('You\'ve forgotten the username or password.')
+        return redirect(url_for('signin.index'))
     if not auth.verify_password_callback(username, password):
-        abort(400)    # failed authen
+        flash('You\'ve mistyped the username or password.')
+        return redirect(url_for('signin.index'))
     res = make_response(redirect(url_for('index'), code=302))
     res.set_cookie('token', g.user.generate_auth_token())
     return res

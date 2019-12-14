@@ -2,6 +2,9 @@ extends base
 
 block head
   script(src=url_for('static', filename='js/validate.js'))
+  if get_flashed_messages()
+    style(type='text/css').
+      .ui.form .error.message { display: inherit; }
 
 block content
   .column
@@ -11,6 +14,9 @@ block content
         | Create new account
     form.ui.large.form(method='POST' action=url_for('signup.result'))
       .ui.error.message
+        ul.list
+          each message in get_flashed_messages()
+            li= message
       .ui.stacked.segment
         .field
           .ui.left.icon.input
