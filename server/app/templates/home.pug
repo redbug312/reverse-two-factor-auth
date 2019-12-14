@@ -1,0 +1,35 @@
+extends base
+
+block content
+  .ui.placeholder.segment
+    .ui.basic.segment
+      .ui.icon.header
+        i.envelope.open.icon
+        | Fortune Cookie Today
+    .ui.segments
+      .ui.left.aligned.basic.segment
+        i.large.grey.left.quote.icon
+      .ui.center.aligned.basic.segment
+        .ui.huge.header
+          | Play Rogue, visit exotic locations, meet strange creatures and kill them.
+      .ui.right.aligned.basic.segment
+        i.large.grey.right.quote.icon
+      .ui.right.aligned.secondary.segment
+        .ui.label
+          i.user.icon
+          | Anonymous
+    .ui.basic.segment
+      .ui.horizontal.divider How's that?
+      .ui.large.labeled.buttons
+        .ui.positive.button
+          i.thumbs.up.icon
+          | Like
+        .or
+        .ui.button
+          i.thumbs.down.icon
+          | Dislike
+  a.ui.right.floated.basic.button(tabindex=0 href=url_for('logout'))
+    i.logout.icon
+    | Logout
+
+// vim: set ts=2 sw=2 et:

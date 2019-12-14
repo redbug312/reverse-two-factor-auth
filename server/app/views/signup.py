@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, request, jsonify, render_template
+from flask import Blueprint, abort, request, render_template, redirect, url_for
 
 from ..models import User, db
 
@@ -24,4 +24,4 @@ def result():
     user.hash_password(password)
     db.session.add(user)
     db.session.commit()
-    return jsonify({'success': True}), 201
+    return redirect(url_for('signin.index'), code=302)

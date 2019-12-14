@@ -1,0 +1,13 @@
+extends base
+
+block content
+  .ui.placeholder.segment
+    .ui.basic.segment
+      .ui.icon.header
+        i.envelope.icon
+        | Receive Your Fortune Cookies!
+    .ui.two.buttons
+        a.ui.primary.button(tabindex=0 href=url_for('signin.index')) Login
+        a.ui.button(tabindex=1 href=url_for('signup.index')) Sign Up
+
+// vim: set ts=2 sw=2 et:
