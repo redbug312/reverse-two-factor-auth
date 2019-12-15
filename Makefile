@@ -1,4 +1,12 @@
-.PHONY: start
+.PHONY: start test
+
+ROOT = $(shell pwd)
+export FLASK  = $(ROOT)/env/bin/flask
+export PYTEST = $(ROOT)/env/bin/pytest
+
 
 start:
-	make start -C server
+	PYTHONPATH=$(ROOT) make start -C server
+
+test:
+	PYTHONPATH=$(ROOT) $(PYTEST) test
