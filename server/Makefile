@@ -1,7 +1,8 @@
 .PHONY: start
 
-FLASK ?= ../env/bin/flask
+ENV ?= . ../env/bin/activate; \
+	   PYTHONPATH=$(shell pwd/..)
 
 start:
-	FLASK_APP=run.py FLASK_ENV=development $(FLASK) run
+	$(ENV) FLASK_APP=run.py FLASK_ENV=development flask run
 
