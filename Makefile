@@ -1,4 +1,10 @@
-.PHONY: start
+.PHONY: start test
+
+export ENV = . $(shell pwd)/env/bin/activate; \
+	         PYTHONPATH=$(shell pwd)
 
 start:
-	make start -C server
+	$(ENV) make start -C server
+
+test:
+	$(ENV) pytest test

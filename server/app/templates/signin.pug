@@ -1,0 +1,35 @@
+extends base
+
+block head
+  script(src=url_for('static', filename='js/validate.js'))
+  if get_flashed_messages()
+    style(type='text/css').
+      .ui.form .error.message { display: inherit; }
+
+block content
+  .column
+    h1.ui.blue.icon.header
+      i.grey.circular.paragraph.icon
+      .content
+        | Login your account
+    form.ui.large.form(method='POST' action=url_for('signin.result'))
+      .ui.error.message
+        ul.list
+          each message in get_flashed_messages()
+            li= message
+      .ui.stacked.segment
+        .field
+          .ui.left.icon.input
+            i.user.icon
+            input(name='username' placeholder='Username' value='username' type='text')
+        .field
+          .ui.left.icon.input
+            i.lock.icon
+            input(name='password' placeholder='Password' value='password' type='password')
+        .ui.fluid.large.primary.submit.button Login
+    .ui.message
+      | New to us?&nbsp;
+      a(href=url_for('signup.index')) Sign up
+      | .
+
+// vim: set ts=2 sw=2 et:
