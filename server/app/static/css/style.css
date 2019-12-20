@@ -1,13 +1,9 @@
 body {
-  background-color: #DADADA;
+  background-color: hsl(0, 0%, 85%);
 }
 
 body > .grid {
   height: 100%;
-}
-
-.image {
-  margin-top: -100px;
 }
 
 .column {
