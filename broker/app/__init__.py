@@ -23,6 +23,8 @@ def handle_exception(error):
     return render_template('error.pug', title=title, error=error), error.code
 
 
-db.init_app(app)
-with app.app_context():
-    db.create_all()
+@app.before_first_request
+def init():
+    db.init_app(app)
+    with app.app_context():
+        db.create_all()
