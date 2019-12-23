@@ -2,4 +2,4 @@ __pycache__
 *.pid
 
 env/
-db.sqlite
+*.sqlite

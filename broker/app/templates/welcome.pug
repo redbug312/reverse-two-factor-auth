@@ -1,0 +1,16 @@
+extends base
+
+block content
+  .column
+    .ui.placeholder.segment
+      .ui.basic.segment
+        .ui.icon.header
+          i.id.badge.icon
+          | Check Authentication Records
+        form(method='GET' action=url_for('lookup.index'))
+          .ui.action.input
+            input(name='code' value='123456' placeholder='Code' type='text')
+            button.ui.basic.icon.button(type='submit')
+              i.search.icon
+
+// vim: set ts=2 sw=2 et:

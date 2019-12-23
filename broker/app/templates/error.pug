@@ -1,0 +1,11 @@
+extends base
+
+block content
+  .left.aligned.column
+    .ui.icon.error.message
+      i.minus.circle.icon
+      .content
+        .header Error #{error.code}: #{error.name}
+        p= error.description
+
+// vim: set ts=2 sw=2 et:

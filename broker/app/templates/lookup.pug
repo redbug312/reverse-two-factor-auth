@@ -1,0 +1,32 @@
+extends base
+
+block content
+  .column
+    .ui.placeholder.segment
+      .ui.basic.segment
+        .ui.icon.header
+          i.grey.id.badge.icon
+          .ui.statistic
+            .label code
+            .value= title
+        table.ui.striped.table
+          thead
+            tr
+              th User
+              th.right.aligned Expired in
+          tbody
+            each auth in auths
+              if auth.expired == 'expired'
+                tr.disabled
+                  td
+                    each icon in auth.user
+                      i.disabled.bordered.large.icon(class='#{icon}')
+                  td.right.aligned= auth.expired|capitalize
+              else
+                tr
+                  td
+                    each icon in auth.user
+                      i.bordered.large.icon(class='#{icon}')
+                  td.right.aligned= auth.expired|capitalize
+
+// vim: set ts=2 sw=2 et:
