@@ -2,31 +2,75 @@ extends base
 
 block head
   script(src=url_for('static', filename='js/validate.js'))
+  script(src=url_for('static', filename='js/authenticate.js'))
   if get_flashed_messages()
     style(type='text/css').
       .ui.form .error.message { display: inherit; }
 
 block content
-  .column
-    h1.ui.blue.icon.header
-      i.grey.circular.paragraph.icon
-      .content
-        | Create new account
-    form.ui.large.form(method='POST' action=url_for('signup.result'))
-      .ui.error.message
-        ul.list
-          each message in get_flashed_messages()
-            li= message
-      .ui.stacked.segment
-        .field
-          .ui.left.icon.input
-            i.user.icon
+  .left.aligned.column
+    .ui.center.aligned.basic.segment
+      h1.ui.blue.icon.header
+        i.grey.circular.paragraph.icon
+        .content
+          | Create new account
+    .ui.stacked.segment
+      .ui.small.two.steps
+        .step#steps-step-1
+          i.user.plus.icon
+          .content
+            .title Account Information
+        .step#steps-step-2
+          i.mobile.icon
+          .content
+            .title Two Factor Authentication
+      form.ui.form(method='POST' action=url_for('signup.result') onsubmit='return false;')
+        .ui.error.message
+          ul.list
+            each message in get_flashed_messages()
+              li= message
+        .basic.segment#segment-step-1
+          .field
+            label Username
             input(name='username' placeholder='Username' value='username' type='text')
-        .field
-          .ui.left.icon.input
-            i.lock.icon
+          .field
+            label Password
             input(name='password' placeholder='Password' value='password' type='password')
-        .ui.fluid.large.primary.submit.button Sign Up
+          .field
+            label Password Confirmed
+            input(name='confirmed' placeholder='Password' value='password' type='password')
+          .field
+            .ui.checkbox
+              input(name='agreement' type='checkbox' checked='checked')
+              label I agree to the Terms and Conditions
+          .ui.large.primary.submit.button#submit-step-1 Next Step
+        .basic.segment#segment-step-2
+          .ui.icon.message
+            i.mobile.alternate.icon
+            .content
+              .header Send an SMS to Complete Sign-up
+              p Choose one public authentication server and send an SMS with the code:&nbsp;
+                b 123456
+          table.ui.basic.table
+            thead
+              tr
+                th
+                th Phone Number
+                th Server Name
+                th Status
+            tbody
+              tr
+                td
+                  .ui.fitted.radio.checkbox
+                    input(name='server' value='1' type='radio')
+                    label
+                td 0900000000
+                td Server 1
+                td
+                  i.close.icon
+                  | Unavailable
+          .ui.large.primary.submit.button#submit-step-2 Register
+          .ui.large.button#back-to-step-1 Back
     .ui.message
       | Already has account?&nbsp;
       a(href=url_for('signin.index')) Login
