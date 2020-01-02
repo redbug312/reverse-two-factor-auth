@@ -28,3 +28,11 @@ def init():
     db.init_app(app)
     with app.app_context():
         db.create_all()
+
+
+@app.after_request
+def after_request(res):
+    res.headers.add('Access-Control-Allow-Origin', '*')
+    res.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    res.headers.add('Access-Control-Allow-Methods', 'GET')
+    return res
