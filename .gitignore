@@ -1,5 +1,5 @@
-__pycache__
-*.pid
+__pycache__/
 
 env/
+instance/
 *.sqlite

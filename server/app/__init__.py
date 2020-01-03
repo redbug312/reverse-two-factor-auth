@@ -11,7 +11,7 @@ app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 app.register_blueprint(users)
 app.register_blueprint(signin)
 app.register_blueprint(signup)
-app.config.from_pyfile('config.py')
+app.config.from_pyfile('instance/development.py')
 
 
 @app.route('/')
