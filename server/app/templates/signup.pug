@@ -1,12 +1,10 @@
 extends base
 include mixins/auth
+include mixins/util
 
 block head
   script(src=url_for('static', filename='js/validate.js'))
   script(src=url_for('static', filename='js/authenticate.js'))
-  if get_flashed_messages()
-    style(type='text/css').
-      .ui.form .error.message { display: inherit; }
 
 block content
   .ui.center.aligned.basic.segment
@@ -15,11 +13,8 @@ block content
       .content Create new account
   .ui.stacked.segment
     +auth_steps('account information', 'user plus')
+    +util_flashed_messages
     form.ui.form(method='POST' action=url_for('signup.result'))
-      .ui.error.message
-        ul.list
-          each message in get_flashed_messages()
-            li= message
       .basic.segment.step-1
         .field
           label Username

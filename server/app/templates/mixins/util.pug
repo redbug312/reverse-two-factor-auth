@@ -1,0 +1,8 @@
+mixin util_flashed_messages
+  if get_flashed_messages()
+    .ui.error.message
+      ul.list
+        each message in get_flashed_messages()
+          li= message
+
+// vim: set ts=2 sw=2 et:
