@@ -17,7 +17,7 @@ def index():
 @lookup.route('/lookup/<string:code>')
 def result(code):
     query = Auth.query.filter_by(code=code).order_by(Auth.created_time.desc())
-    auths = [{'user': auth.icons_token(), 'expired': auth.expired_after()}
+    auths = [{'badges': auth.get_badges(), 'expired': auth.expired_after()}
              for auth in query.all()  # if not auth.is_expired()]
              ]
     return render_template('lookup.pug', title=code, auths=auths)

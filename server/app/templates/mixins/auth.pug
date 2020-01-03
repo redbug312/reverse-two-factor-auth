@@ -36,9 +36,9 @@ mixin auth_broker(brokers, code)
           td= broker.phone
           td: a(href='#{broker.url}lookup/#{code}' target='_blank')= broker.name
 
-mixin auth_tokens
- .ui.fluid.disabled.search.selection.dropdown(name='tokens')
-   input(name='tokens' type='hidden')
+mixin auth_badges
+ .ui.fluid.disabled.search.selection.dropdown(name='badges')
+   input(name='badges' type='hidden')
    i.dropdown.icon
    .default.text
    .menu

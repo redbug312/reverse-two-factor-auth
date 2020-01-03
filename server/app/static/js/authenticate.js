@@ -16,7 +16,7 @@ $(document).ready(function(e) {
             $steps[2].addClass('active');
             $segments[2].transition('fade left');
             $form.form('add rule', 'broker', 'checked');
-            $form.form('add rule', 'tokens', 'empty');
+            $form.form('add rule', 'badges', 'empty');
             $form.attr('onsubmit', null);
         });
     });
@@ -27,7 +27,7 @@ $(document).ready(function(e) {
             $steps[1].addClass('active');
             $segments[1].transition('fade right');
             $form.form('remove rule', 'broker', 'checked');
-            $form.form('remove rule', 'tokens', 'empty');
+            $form.form('remove rule', 'badges', 'empty');
             $form.attr('onsubmit', 'return false;');
         });
     });
@@ -35,7 +35,7 @@ $(document).ready(function(e) {
     $('#broker-select .button').click(function() {
         const $broker_button = $(this);
         const $broker_each_button = $('#broker-select .button');
-        const $tokens_menu = $('#tokens-select .menu');
+        const $badges_menu = $('#badges-select .menu');
         $broker_button.addClass('loading');
 
         $.ajax({
@@ -49,14 +49,14 @@ $(document).ready(function(e) {
             $broker_button.children('i.icon').addClass('check');
             $broker_button.next().attr('checked', 'checked');
             $broker_button.attr('data-tooltip', null);
-            $tokens_menu.parent().removeClass('disabled').transition('glow');
-            $tokens_menu.empty();
+            $badges_menu.parent().removeClass('disabled').transition('glow');
+            $badges_menu.empty();
             $.each(res.auths, function(_, auth) {
-                $tokens_menu.append(`
-                    <div class='item' data-value='${auth.user.join(' ')}'>
-                        <i class='${auth.user[0]} icon'></i>
-                        <i class='${auth.user[1]} icon'></i>
-                        <i class='${auth.user[2]} icon'></i>
+                $badges_menu.append(`
+                    <div class='item' data-value='${auth.badges.join(' ')}'>
+                        <i class='${auth.badges[0]} icon'></i>
+                        <i class='${auth.badges[1]} icon'></i>
+                        <i class='${auth.badges[2]} icon'></i>
                         <b>${auth.expired}</b>
                     </div>
                 `);
