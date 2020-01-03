@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for
+from flask import Flask, render_template, request, make_response, redirect, url_for, current_app
 from werkzeug.exceptions import HTTPException
 
 from .models import User, db
@@ -16,10 +16,11 @@ app.config.from_pyfile('instance/development.py')
 
 @app.route('/')
 def index():
+    quote = current_app.config['QUOTES'][0]
     token = request.cookies.get('token')
     if token is None or User.verify_auth_token(token) is None:
         return render_template('welcome.pug', title='Welcome')
-    return render_template('home.pug', title='Home')
+    return render_template('home.pug', title='Home', quote=quote)
 
 
 @app.route('/logout')

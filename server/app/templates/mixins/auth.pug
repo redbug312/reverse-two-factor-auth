@@ -14,8 +14,7 @@ mixin auth_message(action, code)
     i.mobile.alternate.icon
     .content
       .header Send an SMS to Complete #{action|title}
-      p Choose one public authentication server and send an SMS with the code:&nbsp;
-        b= code
+      p Choose one public authentication broker, and send an SMS with the code #[strong= code].
 
 mixin auth_broker(brokers, code)
   table.ui.basic.table
@@ -33,9 +32,9 @@ mixin auth_broker(brokers, code)
               data-tooltop='Click to check record'
               data-position='left center'
             ): i.search.icon
-            input(name='broker' value='#{broker.name}' type='radio' hidden)
+            input(name='broker' value=broker.name type='radio' hidden)
           td= broker.phone
-          td= broker.name
+          td: a(href='#{broker.url}lookup/#{code}' target='_blank')= broker.name
 
 mixin auth_tokens
  .ui.fluid.disabled.search.selection.dropdown(name='tokens')

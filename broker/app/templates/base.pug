@@ -5,7 +5,7 @@ head
   meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
   meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
   // Site Properties
-  title #{title} - Auth Code Database
+  title #{title} - Reverse 2FA Database
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js')
@@ -13,6 +13,7 @@ head
   block head
 body
   .ui.middle.aligned.center.aligned.grid
-    block content
+    .left.aligned.column
+      block content
 
 // vim: set ts=2 sw=2 et:

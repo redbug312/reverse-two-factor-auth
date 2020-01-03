@@ -9,48 +9,45 @@ block head
       .ui.form .error.message { display: inherit; }
 
 block content
-  .left.aligned.column
-    .ui.center.aligned.basic.segment
-      h1.ui.blue.icon.header
-        i.grey.circular.paragraph.icon
-        .content Create new account
-    .ui.stacked.segment
-      +auth_steps('account information', 'user plus')
-      form.ui.form(method='POST' action=url_for('signup.result'))
-        .ui.error.message
-          ul.list
-            each message in get_flashed_messages()
-              li= message
-        .basic.segment.step-1
-          .field
-            label Username
-            input(name='username' placeholder='Username'
-                  type='text' value='username')
-          .field
-            label Password
-            input(name='password' placeholder='Password'
-                  type='password' value='password')
-          .field
-            label Password Confirmed
-            input(name='confirmed' placeholder='Password'
-                  type='password' value='password')
-          .field: .ui.checkbox
-            input(name='agreement' type='checkbox' checked)
-            label I agree to the Terms and Conditions
-          .ui.large.primary.submit.button#forward-step-2 Next Step
-        .basic.segment.step-2
-          +auth_message('sign-up', code)
-          .field#broker-select
-            label Broker
-            +auth_broker(brokers, code)
-          .field#tokens-select
-            label Tokens
-            +auth_tokens
-          .ui.large.primary.submit.button Register
-          .ui.large.button#backward-step-1 Back
-    .ui.message
-      | Already has account?&nbsp;
-      a(href=url_for('signin.index')) Login
-      | .
+  .ui.center.aligned.basic.segment
+    h1.ui.blue.icon.header
+      i.grey.circular.paragraph.icon
+      .content Create new account
+  .ui.stacked.segment
+    +auth_steps('account information', 'user plus')
+    form.ui.form(method='POST' action=url_for('signup.result'))
+      .ui.error.message
+        ul.list
+          each message in get_flashed_messages()
+            li= message
+      .basic.segment.step-1
+        .field
+          label Username
+          input(name='username' placeholder='Username'
+                type='text' value='username')
+        .field
+          label Password
+          input(name='password' placeholder='Password'
+                type='password' value='password')
+        .field
+          label Password Confirmed
+          input(name='confirmed' placeholder='Password'
+                type='password' value='password')
+        .field: .ui.checkbox
+          input(name='agreement' type='checkbox' checked)
+          label I agree to the Terms and Conditions
+        .ui.large.primary.submit.button#forward-step-2 Next Step
+      .basic.segment.step-2
+        +auth_message('sign-up', code)
+        .field#broker-select
+          label Broker
+          +auth_broker(brokers, code)
+        .field#tokens-select
+          label Tokens
+          +auth_tokens
+        .ui.large.primary.submit.button Register
+        .ui.large.button#backward-step-1 Back
+  .ui.message
+    | Already has account? #[a(href=url_for('signin.index')) Login].
 
 // vim: set ts=2 sw=2 et:
