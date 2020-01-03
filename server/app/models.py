@@ -30,7 +30,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(64))
 
     def hash_password(self, password):
-        self.password_hash = pwd_context.encrypt(password)
+        self.password_hash = pwd_context.hash(password)
 
     def verify_password(self, password):
         return pwd_context.verify(password, self.password_hash)
