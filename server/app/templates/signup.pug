@@ -1,4 +1,5 @@
 extends base
+include mixins/auth
 
 block head
   script(src=url_for('static', filename='js/validate.js'))
@@ -12,18 +13,9 @@ block content
     .ui.center.aligned.basic.segment
       h1.ui.blue.icon.header
         i.grey.circular.paragraph.icon
-        .content
-          | Create new account
+        .content Create new account
     .ui.stacked.segment
-      .ui.small.two.steps
-        .step.step-1
-          i.user.plus.icon
-          .content
-            .title Account Information
-        .step.step-2
-          i.mobile.icon
-          .content
-            .title Two Factor Authentication
+      +auth_steps('account information', 'user plus')
       form.ui.form(method='POST' action=url_for('signup.result'))
         .ui.error.message
           ul.list
@@ -32,52 +24,28 @@ block content
         .basic.segment.step-1
           .field
             label Username
-            input(name='username' placeholder='Username' value='username' type='text')
+            input(name='username' placeholder='Username'
+                  type='text' value='username')
           .field
             label Password
-            input(name='password' placeholder='Password' value='password' type='password')
+            input(name='password' placeholder='Password'
+                  type='password' value='password')
           .field
             label Password Confirmed
-            input(name='confirmed' placeholder='Password' value='password' type='password')
-          .field
-            .ui.checkbox
-              input(name='agreement' type='checkbox' checked='checked')
-              label I agree to the Terms and Conditions
+            input(name='confirmed' placeholder='Password'
+                  type='password' value='password')
+          .field: .ui.checkbox
+            input(name='agreement' type='checkbox' checked)
+            label I agree to the Terms and Conditions
           .ui.large.primary.submit.button#forward-step-2 Next Step
         .basic.segment.step-2
-          .ui.icon.message
-            i.mobile.alternate.icon
-            .content
-              .header Send an SMS to Complete Sign-up
-              p Choose one public authentication server and send an SMS with the code:&nbsp;
-                b= code
+          +auth_message('sign-up', code)
           .field#broker-select
             label Broker
-            table.ui.basic.table
-              thead
-                tr
-                  th Status
-                  th Phone Number
-                  th Broker Name
-              tbody
-                each broker in brokers
-                  tr
-                    td
-                      .ui.basic.icon.button(data-auth-url='#{broker.url}api/auths/#{code}'
-                                            data-tooltop='Click to check record'
-                                            data-position='left center')
-                        i.search.icon
-                      input(name='broker' value='#{broker.name}' type='radio' hidden='hidden')
-                    td= broker.phone
-                    td= broker.name
-          .field#phone-select
-            label Identity
-            .ui.fluid.disabled.search.selection.dropdown(name='phone')
-              input(name='phone' type='hidden')
-              i.dropdown.icon
-              .default.text
-              .menu
-          .ui.sub.header
+            +auth_broker(brokers, code)
+          .field#tokens-select
+            label Tokens
+            +auth_tokens
           .ui.large.primary.submit.button Register
           .ui.large.button#backward-step-1 Back
     .ui.message

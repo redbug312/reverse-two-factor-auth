@@ -1,0 +1,47 @@
+mixin auth_steps(title, icon)
+  .ui.two.steps(class!=attributes.class)
+    .step.step-1
+      i.icon(class=icon)
+      .content
+        .title= title|title
+    .step.step-2
+      i.mobile.icon
+      .content
+        .title Two Factor Authentication
+
+mixin auth_message(action, code)
+  .ui.icon.message
+    i.mobile.alternate.icon
+    .content
+      .header Send an SMS to Complete #{action|title}
+      p Choose one public authentication server and send an SMS with the code:&nbsp;
+        b= code
+
+mixin auth_broker(brokers, code)
+  table.ui.basic.table
+    thead
+      tr
+        th Status
+        th Phone Number
+        th Broker Name
+    tbody
+      each broker in brokers
+        tr
+          td
+            .ui.basic.icon.button(
+              data-auth-url='#{broker.url}api/auths/#{code}'
+              data-tooltop='Click to check record'
+              data-position='left center'
+            ): i.search.icon
+            input(name='broker' value='#{broker.name}' type='radio' hidden)
+          td= broker.phone
+          td= broker.name
+
+mixin auth_tokens
+ .ui.fluid.disabled.search.selection.dropdown(name='tokens')
+   input(name='tokens' type='hidden')
+   i.dropdown.icon
+   .default.text
+   .menu
+
+// vim: set ts=2 sw=2 et:
