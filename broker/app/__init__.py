@@ -9,7 +9,8 @@ app = Flask(__name__, template_folder='templates')
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 app.register_blueprint(auths)
 app.register_blueprint(lookup)
-app.config.from_pyfile('instance/development.py')
+app.config.from_pyfile('instance/default.py')
+app.config.from_pyfile('instance/development.py', silent=True)
 
 
 @app.route('/')
