@@ -1,32 +1,46 @@
 extends base
+include mixins/auth
 
 block head
   script(src=url_for('static', filename='js/validate.js'))
+  script(src=url_for('static', filename='js/authenticate.js'))
   if get_flashed_messages()
     style(type='text/css').
       .ui.form .error.message { display: inherit; }
 
 block content
-  .column
-    h1.ui.blue.icon.header
-      i.grey.circular.paragraph.icon
-      .content
-        | Login your account
-    form.ui.large.form(method='POST' action=url_for('signin.result'))
-      .ui.error.message
-        ul.list
-          each message in get_flashed_messages()
-            li= message
-      .ui.stacked.segment
-        .field
-          .ui.left.icon.input
+  .left.aligned.column
+    .ui.center.aligned.basic.segment
+      h1.ui.blue.icon.header
+        i.grey.circular.paragraph.icon
+        .content Login your account
+    .ui.stacked.segment
+      +auth_steps('account sign-in', 'user')
+      form.ui.form(method='POST' action=url_for('signin.result'))
+        .ui.error.message
+          ul.list
+            each message in get_flashed_messages()
+              li= message
+        .basic.segment.step-1
+          .field: .ui.left.icon.input
             i.user.icon
-            input(name='username' placeholder='Username' value='username' type='text')
-        .field
-          .ui.left.icon.input
+            input(name='username' placeholder='Username'
+                  type='text' value='username')
+          .field: .ui.left.icon.input
             i.lock.icon
-            input(name='password' placeholder='Password' value='password' type='password')
-        .ui.fluid.large.primary.submit.button Login
+            input(name='password' placeholder='Password'
+                  type='password' value='password')
+          .ui.large.primary.submit.button#forward-step-2 Next Step
+        .basic.segment.step-2
+          +auth_message('sign-in', code)
+          .field#broker-select
+            label Broker
+            +auth_broker(brokers, code)
+          .field#tokens-select
+            label Tokens
+            +auth_tokens
+          .ui.large.primary.submit.button Login
+          .ui.large.button#backward-step-1 Back
     .ui.message
       | New to us?&nbsp;
       a(href=url_for('signup.index')) Sign up

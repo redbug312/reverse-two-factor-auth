@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect, url_for, make_response, g, flash
+from flask import Blueprint, request, render_template, redirect, url_for, make_response, g, flash, current_app
 
 from ..models import auth
 
@@ -8,7 +8,8 @@ signin = Blueprint('signin', __name__)
 
 @signin.route('/signin')
 def index():
-    return render_template('signin.pug', title='Login')
+    brokers = current_app.config['BROKERS']
+    return render_template('signin.pug', title='Login', code='123456', brokers=brokers)
 
 
 @signin.route('/signin/redirect', methods=['POST'])
