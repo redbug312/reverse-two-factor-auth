@@ -17,6 +17,7 @@ $(document).ready(function(e) {
             $segments[2].transition('fade left');
             $form.form('add rule', 'broker', 'checked');
             $form.form('add rule', 'badges', 'empty');
+            $form.form('remove rule', 'recaptcha', 'recaptcha');
             $form.attr('onsubmit', null);
         });
     });
@@ -26,6 +27,7 @@ $(document).ready(function(e) {
         $segments[2].transition('fade left', function() {
             $steps[1].addClass('active');
             $segments[1].transition('fade right');
+            $form.form('add rule', 'recaptcha', 'recaptcha');
             $form.form('remove rule', 'broker', 'checked');
             $form.form('remove rule', 'badges', 'empty');
             $form.attr('onsubmit', 'return false;');

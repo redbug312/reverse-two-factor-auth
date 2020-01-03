@@ -5,6 +5,7 @@ include mixins/util
 block head
   script(src=url_for('static', filename='js/validate.js'))
   script(src=url_for('static', filename='js/authenticate.js'))
+  script(src='https://www.google.com/recaptcha/api.js', async, defer)
 
 block content
   .ui.center.aligned.basic.segment
@@ -24,6 +25,11 @@ block content
           i.lock.icon
           input(name='password' placeholder='Password'
                 type='password' value='password')
+        .field
+          // input(name='recaptcha' type='hidden')
+          .g-recaptcha(data-sitekey=recaptcha
+                       data-callback='recaptcha_validate'
+                       data-expired-callback='recaptcha_expired')
         .ui.large.primary.submit.button#forward-step-2 Next Step
       .basic.segment.step-2
         +auth_message('sign-in', code)

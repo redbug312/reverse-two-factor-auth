@@ -9,7 +9,9 @@ signup = Blueprint('signup', __name__)
 @signup.route('/signup')
 def index():
     brokers = current_app.config['BROKERS']
-    return render_template('signup.pug', title='Sign Up', code='123456', brokers=brokers)
+    recaptcha = current_app.config['RECAPTCHA_SITEKEY']
+    return render_template('signup.pug', title='Sign Up', code='123456',
+                           brokers=brokers, recaptcha=recaptcha)
 
 
 @signup.route('/signup/redirect', methods=['POST'])

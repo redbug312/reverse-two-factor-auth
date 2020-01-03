@@ -9,7 +9,9 @@ signin = Blueprint('signin', __name__)
 @signin.route('/signin')
 def index():
     brokers = current_app.config['BROKERS']
-    return render_template('signin.pug', title='Login', code='123456', brokers=brokers)
+    recaptcha = current_app.config['RECAPTCHA_SITEKEY']
+    return render_template('signin.pug', title='Login', code='123456',
+                           brokers=brokers, recaptcha=recaptcha)
 
 
 @signin.route('/signin/redirect', methods=['POST'])
