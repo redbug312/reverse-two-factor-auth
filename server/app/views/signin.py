@@ -24,6 +24,6 @@ def result():
     if not auth.verify_password_callback(username, password):
         flash('You\'ve mistyped the username or password.')
         return redirect(url_for('signin.index'))
-    res = make_response(redirect(url_for('index'), code=302))
+    res = make_response(redirect(url_for('index')))
     res.set_cookie('token', g.user.generate_auth_token())
     return res

@@ -29,4 +29,4 @@ def result():
     user.hash_password(password)
     db.session.add(user)
     db.session.commit()
-    return redirect(url_for('signin.index'), code=302)
+    return redirect(url_for('signin.index'))

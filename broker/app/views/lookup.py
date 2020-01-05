@@ -11,7 +11,7 @@ def index():
     code = request.args.get('code')
     if code is None:
         return redirect(url_for('index'))
-    return redirect(url_for('lookup.result', code=code))
+    return redirect(url_for('lookup.result', code=code), code=301)
 
 
 @lookup.route('/lookup/<string:code>')
