@@ -26,8 +26,9 @@ def verify_password(username_or_token, password):
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32), index=True)
-    password_hash = db.Column(db.String(64))
+    username = db.Column(db.String(32), index=True, nullable=False)
+    password_hash = db.Column(db.String(64), nullable=False)
+    badges = db.Column(db.String(64))
 
     def hash_password(self, password):
         self.password_hash = pwd_context.hash(password)

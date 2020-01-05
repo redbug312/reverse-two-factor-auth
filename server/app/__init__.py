@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, current_app
+from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException
 
 from .models import User, db
@@ -13,6 +14,8 @@ app.register_blueprint(signin)
 app.register_blueprint(signup)
 app.config.from_pyfile('instance/default.py')
 app.config.from_pyfile('instance/development.py', silent=True)
+
+migrate = Migrate(app, db)
 
 
 @app.route('/')
