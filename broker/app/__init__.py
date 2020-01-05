@@ -9,7 +9,8 @@ app = Flask(__name__, template_folder='templates')
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 app.register_blueprint(auths)
 app.register_blueprint(lookup)
-app.config.from_pyfile('config.py')
+app.config.from_pyfile('instance/default.py')
+app.config.from_pyfile('instance/development.py', silent=True)
 
 
 @app.route('/')
@@ -28,3 +29,11 @@ def init():
     db.init_app(app)
     with app.app_context():
         db.create_all()
+
+
+@app.after_request
+def after_request(res):
+    res.headers.add('Access-Control-Allow-Origin', '*')
+    res.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    res.headers.add('Access-Control-Allow-Methods', 'GET')
+    return res

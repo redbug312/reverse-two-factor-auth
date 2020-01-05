@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for
+from flask import Flask, render_template, request, make_response, redirect, url_for, current_app
+from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException
 
 from .models import User, db
@@ -11,15 +12,19 @@ app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 app.register_blueprint(users)
 app.register_blueprint(signin)
 app.register_blueprint(signup)
-app.config.from_pyfile('config.py')
+app.config.from_pyfile('instance/default.py')
+app.config.from_pyfile('instance/development.py', silent=True)
+
+migrate = Migrate(app, db)
 
 
 @app.route('/')
 def index():
+    quote = current_app.config['QUOTES'][0]
     token = request.cookies.get('token')
     if token is None or User.verify_auth_token(token) is None:
         return render_template('welcome.pug', title='Welcome')
-    return render_template('home.pug', title='Home')
+    return render_template('home.pug', title='Home', quote=quote)
 
 
 @app.route('/logout')

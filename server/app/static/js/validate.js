@@ -1,37 +1,30 @@
-$(document)
-  .ready(function() {
-    $('.ui.form')
-      .form({
+$(document).ready(function() {
+    const recaptcha = {
+        validated: false,
+        validate: function(res) {
+            this.validated = true;
+            return this;
+        },
+        expired: function() {
+            this.validated = false;
+            return this;
+        },
+    };
+
+    window.recaptcha_validate = recaptcha.validate.bind(recaptcha);
+    window.recaptcha_expired = recaptcha.expired.bind(recaptcha);
+    $.fn.form.settings.rules.recaptcha = function() {
+        return recaptcha.validated;
+    };
+
+    $('.ui.form').form({
+        inline: true,
         fields: {
-          email: {
-            identifier  : 'email',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your e-mail'
-              },
-              {
-                type   : 'email',
-                prompt : 'Please enter a valid e-mail'
-              }
-            ]
-          },
-          password: {
-            identifier  : 'password',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your password'
-              },
-              {
-                type   : 'length[6]',
-                prompt : 'Your password must be at least 6 characters'
-              }
-            ]
-          }
+            username: 'empty',
+            password: ['empty', 'length[6]'],
+            confirmed: 'match[password]',
+            agreement: 'checked',
+            recaptcha: 'recaptcha',
         }
-      })
-    ;
-  })
-;
-/* vim: set ts=2 sw=2 et: */
+    });
+});

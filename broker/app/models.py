@@ -27,7 +27,7 @@ class Auth(db.Model):
                else naturaldelta(expired_delta) if humanize \
                else str(expired_delta)
 
-    def icons_token(self):
+    def get_badges(self):
         seeds = [int(hex_sha1.hash(self.phone + str(n)), 16)
                  for n in range(3)]
         return [random_icon(seed) for seed in seeds]
