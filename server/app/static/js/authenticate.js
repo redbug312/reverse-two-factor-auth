@@ -59,7 +59,7 @@ $(document).ready(function(e) {
                         <i class='${auth.badges[0]} icon'></i>
                         <i class='${auth.badges[1]} icon'></i>
                         <i class='${auth.badges[2]} icon'></i>
-                        <b>${auth.expired}</b>
+                        <strong>${auth.digits}</strong>
                     </div>
                 `);
             });

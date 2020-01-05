@@ -12,6 +12,7 @@ block content
         thead
           tr
             th User Badges
+            th Last 3 Digits
             th.right.aligned Expired in
         tbody
           each auth in auths
@@ -20,6 +21,7 @@ block content
               td
                 each badge in auth.badges
                   i.bordered.large.icon(class=badge class=check_expire)
+              td= auth.digits
               td.right.aligned= auth.expired|capitalize
 
 // vim: set ts=2 sw=2 et:
