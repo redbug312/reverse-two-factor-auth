@@ -18,11 +18,12 @@ def index():
 def result():
     username = request.form.get('username')
     password = request.form.get('password')
+    badges = request.form.get('badges')
     if username is None or password is None:
-        flash('You\'ve forgotten the username or password.')
+        flash('You\'ve forgotten the username or password.', 'error')
         return redirect(url_for('signin.index'))
-    if not auth.verify_password_callback(username, password):
-        flash('You\'ve mistyped the username or password.')
+    if not auth.verify_password_callback(username, password, badges):
+        flash('You\'ve given mismatched password or badges.', 'error')
         return redirect(url_for('signin.index'))
     res = make_response(redirect(url_for('index')))
     res.set_cookie('token', g.user.generate_auth_token())

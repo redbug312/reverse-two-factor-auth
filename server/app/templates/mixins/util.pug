@@ -1,8 +1,10 @@
 mixin util_flashed_messages
-  if get_flashed_messages()
-    .ui.error.message
-      ul.list
-        each message in get_flashed_messages()
-          li= message
+  each category in ['success', 'info', 'warning', 'error', 'message']
+    - var messages = get_flashed_messages(category_filter=[category])
+    if messages
+      .ui.message(class=category)
+        ul.list
+          each message in messages
+            li= message
 
 // vim: set ts=2 sw=2 et:

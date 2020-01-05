@@ -16,17 +16,18 @@ def index():
 
 @signup.route('/signup/redirect', methods=['POST'])
 def result():
-    # TODO merge into api.new_user
     username = request.form.get('username')
     password = request.form.get('password')
+    badges = request.form.get('badges')
     if username is None or password is None:
-        flash('You\'ve forgotten the username or password.')
+        flash('You\'ve forgotten the username, password.', 'error')
         return redirect(url_for('signup.index'))
     if User.query.filter_by(username=username).first() is not None:
-        flash('This username has been signed-up.')
+        flash('This username has been signed-up.', 'error')
         return redirect(url_for('signup.index'))
-    user = User(username=username)
+    user = User(username=username, badges=badges)
     user.hash_password(password)
     db.session.add(user)
     db.session.commit()
+    flash('You\'ve successfully registered! Welcome!', 'success')
     return redirect(url_for('signin.index'))
