@@ -19,14 +19,12 @@ block content
       .basic.segment.step-1
         .field: .ui.left.icon.input
           i.user.icon
-          input(name='username' placeholder='Username'
-                type='text' value='username')
+          input(name='username' placeholder='Username' type='text')
         .field: .ui.left.icon.input
           i.lock.icon
-          input(name='password' placeholder='Password'
-                type='password' value='password')
+          input(name='password' placeholder='Password' type='password')
         .field
-          // input(name='recaptcha' type='hidden')
+          input(name='recaptcha' type='hidden')
           .g-recaptcha(data-sitekey=recaptcha
                        data-callback='recaptcha_validate'
                        data-expired-callback='recaptcha_expired')

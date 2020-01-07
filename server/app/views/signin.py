@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, redirect, url_for, make_response, g, flash, current_app
+from random import randint
 
 from ..models import auth
 
@@ -8,9 +9,10 @@ signin = Blueprint('signin', __name__)
 
 @signin.route('/signin')
 def index():
+    code = 448043  # randint(100000, 999999)
     brokers = current_app.config['BROKERS']
     recaptcha = current_app.config['RECAPTCHA_SITEKEY']
-    return render_template('signin.pug', title='Login', code='123456',
+    return render_template('signin.pug', title='Login', code=code,
                            brokers=brokers, recaptcha=recaptcha)
 
 

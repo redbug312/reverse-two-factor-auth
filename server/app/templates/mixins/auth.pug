@@ -27,14 +27,16 @@ mixin auth_broker(brokers, code)
       each broker in brokers
         tr
           td
-            .ui.basic.icon.button(
+            .ui.icon.button(
               data-auth-url='#{broker.url}api/auths/#{code}'
-              data-tooltop='Click to check record'
+              data-tooltip='Click to check record.'
               data-position='left center'
-            ): i.search.icon
+            ): i.hand.pointer.icon
             input(name='broker' value=broker.name type='radio' hidden)
           td= broker.phone
-          td: a(href='#{broker.url}lookup/#{code}' target='_blank')= broker.name
+          td: a(href='#{broker.url}lookup/#{code}' target='_blank')
+            i.external.alternate.icon
+            strong= broker.name
 
 mixin auth_badges
  .ui.fluid.disabled.search.selection.dropdown(name='badges')

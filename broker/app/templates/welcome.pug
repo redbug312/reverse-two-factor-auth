@@ -1,14 +1,17 @@
 extends base
 
+block head
+  script(src=url_for('static', filename='js/validate.js'))
+
 block content
   .ui.placeholder.segment
     .ui.center.aligned.basic.segment
       .ui.icon.header
         i.id.badge.icon
         | Check Authentication Records
-      form(method='GET' action=url_for('lookup.index'))
-        .ui.action.input
-          input(name='code' value='123456' placeholder='Code' type='text')
+      form.ui.form(method='GET' action=url_for('lookup.index'))
+        .field: .ui.action.input
+          input(name='code' placeholder='Code' type='text')
           button.ui.basic.icon.button(type='submit')
             i.search.icon
 

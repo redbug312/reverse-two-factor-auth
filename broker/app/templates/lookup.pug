@@ -15,13 +15,17 @@ block content
             th Last 3 Digits
             th.right.aligned Expired in
         tbody
-          each auth in auths
-            - var check_expire = {'disabled': auth.expired == 'expired'}
-            tr(class=check_expire)
-              td
-                each badge in auth.badges
-                  i.bordered.large.icon(class=badge class=check_expire)
-              td= auth.digits
-              td.right.aligned= auth.expired|capitalize
+          if auths
+            each auth in auths
+              - var check_expire = {'disabled': auth.expired == 'expired'}
+              tr(class=check_expire)
+                td
+                  each badge in auth.badges
+                    i.bordered.large.icon(class=badge class=check_expire)
+                td= auth.digits
+                td.right.aligned= auth.expired|capitalize
+          else
+            tr
+              td.center.aligned(colspan='3') No records found.
 
 // vim: set ts=2 sw=2 et:

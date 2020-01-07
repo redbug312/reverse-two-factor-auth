@@ -20,6 +20,5 @@ def result(code):
     auths = [{'badges': auth.get_badges(),
               'digits': auth.phone[-3:],
               'expired': auth.expired_after()}
-             for auth in query.all()  # if not auth.is_expired()]
-             ]
+             for auth in query.all() if not auth.is_expired()]
     return render_template('lookup.pug', title=code, auths=auths)

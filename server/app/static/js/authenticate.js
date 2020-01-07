@@ -39,6 +39,7 @@ $(document).ready(function(e) {
         const $broker_each_button = $('#broker-select .button');
         const $badges_menu = $('#badges-select .menu');
         $broker_button.addClass('loading');
+        $broker_button.attr('data-tooltip', null);
 
         $.ajax({
             url: $(this).attr('data-auth-url'),
@@ -48,9 +49,9 @@ $(document).ready(function(e) {
         }).done(function(res) {
             $broker_each_button.removeClass('positive');
             $broker_button.addClass('positive');
+            $broker_button.attr('data-tooltip', 'Records found.');
             $broker_button.children('i.icon').addClass('check');
             $broker_button.next().attr('checked', 'checked');
-            $broker_button.attr('data-tooltip', null);
             $badges_menu.parent().removeClass('disabled').transition('glow');
             $badges_menu.empty();
             $.each(res.auths, function(_, auth) {
@@ -69,7 +70,7 @@ $(document).ready(function(e) {
                                 'Broker is offline. Click to retry.')
         }).always(function() {
             $broker_button.removeClass('loading');
-            $broker_button.children('i.icon').removeClass('search');
+            $broker_button.children('i.icon').removeClass('hand pointer');
         });
     });
 

@@ -19,21 +19,18 @@ block content
       .basic.segment.step-1
         .field
           label Username
-          input(name='username' placeholder='Username'
-                type='text' value='username')
+          input(name='username' placeholder='Username' type='text')
         .field
           label Password
-          input(name='password' placeholder='Password'
-                type='password' value='password')
+          input(name='password' placeholder='Password' type='password')
         .field
           label Password Confirmed
-          input(name='confirmed' placeholder='Password'
-                type='password' value='password')
+          input(name='confirmed' placeholder='Password' type='password')
         .field: .ui.checkbox
           input(name='agreement' type='checkbox' checked)
           label I agree to the Terms and Conditions
         .field
-          // input(name='recaptcha' type='hidden')
+          input(name='recaptcha' type='hidden')
           .g-recaptcha(data-sitekey=recaptcha
                        data-callback='recaptcha_validate'
                        data-expired-callback='recaptcha_expired')

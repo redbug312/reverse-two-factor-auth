@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash, current_app
+from random import randint
 
 from ..models import User, db
 
@@ -8,9 +9,10 @@ signup = Blueprint('signup', __name__)
 
 @signup.route('/signup')
 def index():
+    code = 831194  # randint(100000, 999999)
     brokers = current_app.config['BROKERS']
     recaptcha = current_app.config['RECAPTCHA_SITEKEY']
-    return render_template('signup.pug', title='Sign Up', code='123456',
+    return render_template('signup.pug', title='Sign Up', code=code,
                            brokers=brokers, recaptcha=recaptcha)
 
 
