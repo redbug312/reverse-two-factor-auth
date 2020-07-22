@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, render_template, redirect, url_for, current_app
 
 from ..models import Auth
 
@@ -21,4 +21,5 @@ def result(code):
               'digits': auth.phone[-3:],
               'expired': auth.expired_after()}
              for auth in query.all() if not auth.is_expired()]
+    auths += current_app.config['AUTHS']
     return render_template('lookup.pug', title=code, auths=auths)

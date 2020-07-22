@@ -12,7 +12,7 @@ icon_shapes = [
     'ambulance', 'anchor', 'balance scale', 'bath', 'bed',
     'beer', 'bell', 'bell slash', 'bicycle', 'binoculars',
     'birthday cake', 'blind', 'bomb', 'book', 'bookmark',
-    'briefcase', 'building', 'car', 'coffee', 'crosshairs',
+    'briefcase', 'building', 'bug', 'car', 'coffee', 'crosshairs',
     'dollar sign', 'eye', 'eye slash', 'fighter jet', 'fire',
     'fire extinguisher', 'flag', 'flag checkered', 'flask', 'gamepad',
     'gavel', 'gift', 'glass martini', 'globe', 'graduation cap',

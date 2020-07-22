@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, request, jsonify
+from flask import Blueprint, abort, request, jsonify, current_app
 
 from ..models import Auth, db
 
@@ -25,4 +25,5 @@ def get_auths(code):
               'digits': auth.phone[-3:],
               'expired': auth.expired_after()}
              for auth in query.all() if not auth.is_expired()]
+    auths += current_app.config['AUTHS']
     return jsonify({'auths': auths})
