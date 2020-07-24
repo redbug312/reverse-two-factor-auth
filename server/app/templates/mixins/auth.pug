@@ -34,7 +34,7 @@ mixin auth_broker(brokers, code)
             ): i.hand.pointer.icon
             input(name='broker' value=broker.name type='radio' hidden)
           td= broker.phone
-          td: a(href='#{broker.url}lookup/#{code}' target='_blank')
+          td: a(href='#{broker.url}lookup/#{code}' target='_blank' rel='noopener')
             i.external.alternate.icon
             strong= broker.name
 
