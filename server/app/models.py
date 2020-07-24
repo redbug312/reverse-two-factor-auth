@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
+from itsdangerous._compat import constant_time_compare
 
 
 auth = HTTPBasicAuth()
@@ -38,7 +39,8 @@ class User(db.Model):
         return pwd_context.verify(password, self.password_hash)
 
     def verify_badges(self, badges):
-        return not self.badges or badges == self.badges
+        # current_app.logger.debug(badges)
+        return not self.badges or constant_time_compare(badges, self.badges)
 
     def generate_auth_token(self, expiration=600):
         s = Serializer(current_app.config['SECRET_KEY'], expires_in=expiration)

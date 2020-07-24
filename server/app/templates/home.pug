@@ -16,7 +16,10 @@ block content
       .ui.right.aligned.secondary.segment
         .ui.label
           i.user.icon
-          span= quote.author
+          if quote.author
+            span= quote.author
+          else
+            span Anonymous
     .ui.basic.segment
       .ui.horizontal.divider How's that?
       .ui.fluid.large.labeled.buttons
