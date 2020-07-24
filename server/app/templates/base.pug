@@ -7,9 +7,12 @@ head
   meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0')
   // Site Properties
   title #{title} - Fortune Cookies
-  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css')
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js' crossorigin='anonymous'
+         integrity='sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w==')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js' crossorigin='anonymous'
+         integrity='sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css' crossorigin='anonymous'
+       integrity='sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==')
   link(rel='stylesheet' href=url_for('static', filename='css/style.css'))
   block head
 body
