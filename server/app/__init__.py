@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, current_app
 from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException
+from datetime import datetime, date, time
+import random
 
 from .models import User, db
 from .views.api import users
@@ -20,10 +22,13 @@ migrate = Migrate(app, db)
 
 @app.route('/')
 def index():
-    quote = current_app.config['QUOTES'][0]
+    quotes = current_app.config['QUOTES']
     token = request.cookies.get('token')
     if token is None or User.verify_auth_token(token) is None:
         return render_template('welcome.pug', title='Welcome')
+    today = datetime.combine(date.today(), time.min)
+    random.seed(today.timestamp())
+    quote = random.choice(quotes)
     return render_template('home.pug', title='Home', quote=quote)
 
 
